@@ -27,7 +27,6 @@ CREATE TABLE student_profiles (
     bio TEXT,
     github_url VARCHAR(255),
     linkedin_url VARCHAR(255),
-    availability_status ENUM('available', 'busy') DEFAULT 'available',
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 
     FOREIGN KEY (user_id) REFERENCES users(id),

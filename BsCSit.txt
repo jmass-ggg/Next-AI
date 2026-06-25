@@ -1,0 +1,165 @@
+# Bachelor of Science in Computer Science and Information Technology
+
+## Course Structure and Final Examination
+
+### Final Examination
+
+The Institute of Science and Technology, Tribhuvan University, conducts the final examination at the end of each semester for each course, except **Project Work** and **Internship**.
+
+The weightage of the final examination is **60% of the overall weightage**.
+
+---
+
+# Course Structure
+
+## Semester I
+
+| Course Code | Course Title                           | Credit Hours | Full Marks |
+| ----------- | -------------------------------------- | -----------: | ---------: |
+| CSC114      | Introduction to Information Technology |            3 |        100 |
+| CSC115      | C Programming                          |            3 |        100 |
+| CSC116      | Digital Logic                          |            3 |        100 |
+| MTH117      | Mathematics I                          |            3 |        100 |
+| PHY118      | Physics                                |            3 |        100 |
+| **Total**   |                                        |       **15** |    **500** |
+
+---
+
+## Semester II
+
+| Course Code | Course Title                | Credit Hours | Full Marks |
+| ----------- | --------------------------- | -----------: | ---------: |
+| CSC165      | Discrete Structure          |            3 |        100 |
+| CSC166      | Object Oriented Programming |            3 |        100 |
+| CSC167      | Microprocessor              |            3 |        100 |
+| MTH168      | Mathematics II              |            3 |        100 |
+| STA169      | Statistics I                |            3 |        100 |
+| **Total**   |                             |       **15** |    **500** |
+
+---
+
+## Semester III
+
+| Course Code | Course Title                   | Credit Hours | Full Marks |
+| ----------- | ------------------------------ | -----------: | ---------: |
+| CSC211      | Data Structures and Algorithms |            3 |        100 |
+| CSC212      | Numerical Method               |            3 |        100 |
+| CSC213      | Computer Architecture          |            3 |        100 |
+| CSC214      | Computer Graphics              |            3 |        100 |
+| STA215      | Statistics II                  |            3 |        100 |
+| **Total**   |                                |       **15** |    **500** |
+
+---
+
+## Semester IV
+
+| Course Code | Course Title               | Credit Hours | Full Marks |
+| ----------- | -------------------------- | -----------: | ---------: |
+| CSC262      | Theory of Computation      |            3 |        100 |
+| CSC263      | Computer Networks          |            3 |        100 |
+| CSC264      | Operating Systems          |            3 |        100 |
+| CSC265      | Database Management System |            3 |        100 |
+| CSC266      | Artificial Intelligence    |            3 |        100 |
+| **Total**   |                            |       **15** |    **500** |
+
+---
+
+## Semester V
+
+| Course Code | Course Title                      | Credit Hours | Full Marks |
+| ----------- | --------------------------------- | -----------: | ---------: |
+| CSC325      | Design and Analysis of Algorithms |            3 |        100 |
+| CSC326      | System Analysis and Design        |            3 |        100 |
+| CSC327      | Cryptography                      |            3 |        100 |
+| CSC328      | Simulation and Modeling           |            3 |        100 |
+| CSC329      | Web Technology                    |            3 |        100 |
+|             | Elective I                        |            3 |        100 |
+| **Total**   |                                   |       **18** |    **600** |
+
+### List of Electives – Semester V
+
+| S.N. | Course Code | Course Title                                 |
+| ---: | ----------- | -------------------------------------------- |
+|    1 | CSC330      | Multimedia Computing                         |
+|    2 | CSC331      | Wireless Networking                          |
+|    3 | CSC332      | Image Processing                             |
+|    4 | CSC333      | Knowledge Management                         |
+|    5 | CSC334      | Society and Ethics in Information Technology |
+|    6 | CSC335      | Microprocessor Based Design                  |
+
+---
+
+## Semester VI
+
+| Course Code | Course Title                     | Credit Hours | Full Marks |
+| ----------- | -------------------------------- | -----------: | ---------: |
+| CSC375      | Software Engineering             |            3 |        100 |
+| CSC376      | Compiler Design and Construction |            3 |        100 |
+| CSC377      | E-Governance                     |            3 |        100 |
+| CSC378      | NET Centric Computing            |            3 |        100 |
+| CSC379      | Technical Writing                |            3 |        100 |
+|             | Elective II                      |            3 |        100 |
+| **Total**   |                                  |       **18** |    **600** |
+
+### List of Electives – Semester VI
+
+| S.N. | Course Code | Course Title             |
+| ---: | ----------- | ------------------------ |
+|    1 | CSC380      | Applied Logic            |
+|    2 | CSC381      | E-commerce               |
+|    3 | CSC382      | Automation and Robotics  |
+|    4 | CSC383      | Neural Networks          |
+|    5 | CSC384      | Computer Hardware Design |
+|    6 | CSC385      | Cognitive Science        |
+
+---
+
+## Semester VII
+
+| Course Code | Course Title                     | Credit Hours | Full Marks |
+| ----------- | -------------------------------- | -----------: | ---------: |
+| CSC419      | Advanced Java Programming        |            3 |        100 |
+| CSC420      | Data Warehousing and Data Mining |            3 |        100 |
+| MGT421      | Principles of Management         |            3 |        100 |
+| CSC422      | Project Work                     |            3 |        100 |
+|             | Elective III                     |            3 |        100 |
+| **Total**   |                                  |       **15** |    **500** |
+
+### List of Electives – Semester VII
+
+| S.N. | Course Code | Course Title                |
+| ---: | ----------- | --------------------------- |
+|    1 | CSC423      | Information Retrieval       |
+|    2 | CSC424      | Database Administration     |
+|    3 | CSC425      | Software Project Management |
+|    4 | CSC426      | Network Security            |
+|    5 | CSC427      | Digital System Design       |
+|    6 | MGT428      | International Marketing     |
+
+---
+
+## Semester VIII
+
+| Course Code | Course Title      | Credit Hours | Full Marks |
+| ----------- | ----------------- | -----------: | ---------: |
+| CSC475      | Advanced Database |            3 |        100 |
+| CSC476      | Internship        |            6 |        200 |
+|             | Elective IV       |            3 |        100 |
+|             | Elective V        |            3 |        100 |
+| **Total**   |                   |       **15** |    **500** |
+
+---
+
+# Summary
+
+| Semester        | Credit Hours | Full Marks |
+| --------------- | -----------: | ---------: |
+| Semester I      |           15 |        500 |
+| Semester II     |           15 |        500 |
+| Semester III    |           15 |        500 |
+| Semester IV     |           15 |        500 |
+| Semester V      |           18 |        600 |
+| Semester VI     |           18 |        600 |
+| Semester VII    |           15 |        500 |
+| Semester VIII   |           15 |        500 |
+| **Grand Total** |      **126** |   **4200** |

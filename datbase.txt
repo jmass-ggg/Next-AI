@@ -1,0 +1,385 @@
+Recommended MVP Tables
+1. Users Table
+
+This replaces your user_authentication table.
+
+CREATE TABLE users (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(100) NOT NULL,
+    email VARCHAR(150) NOT NULL UNIQUE,
+    password_hash VARCHAR(255) NOT NULL,
+    role ENUM('student', 'admin') DEFAULT 'student',
+    status ENUM('active', 'blocked') DEFAULT 'active',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+2. Student Profile Table
+
+This replaces your user_profile table.
+
+CREATE TABLE student_profiles (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL UNIQUE,
+    full_name VARCHAR(150),
+    age INT,
+    phone_number VARCHAR(20),
+    course_id INT,
+    semester INT,
+    bio TEXT,
+    github_url VARCHAR(255),
+    linkedin_url VARCHAR(255),
+    availability_status ENUM('available', 'busy') DEFAULT 'available',
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (course_id) REFERENCES courses(id)
+);
+3. Courses Table
+
+This replaces your course_or_syllabus table.
+
+CREATE TABLE courses (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    course_name VARCHAR(100) NOT NULL,
+    course_level VARCHAR(50),
+    description TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+Example data:
+
+BCA
+B.Tech
+B.Sc CSIT
+BIT
+4. Subjects Table
+
+This table stores syllabus subjects semester-wise.
+
+CREATE TABLE subjects (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    course_id INT NOT NULL,
+    semester INT NOT NULL,
+    subject_code VARCHAR(50),
+    subject_name VARCHAR(150) NOT NULL,
+    credit_hours INT,
+    lecture_hours INT,
+    tutorial_hours INT,
+    lab_hours INT,
+    description TEXT,
+    why_study TEXT,
+    real_life_use TEXT,
+
+    FOREIGN KEY (course_id) REFERENCES courses(id)
+);
+
+Example:
+
+DBMS → Used in backend development, data storage, banking systems
+Web Technology → Used in frontend/backend web development
+Data Structures → Used in software engineering and problem solving
+5. Skills Table
+
+Do not store skills like "python, java, html" in one column. Store each skill separately.
+
+CREATE TABLE skills (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    skill_name VARCHAR(100) NOT NULL UNIQUE,
+    category VARCHAR(100)
+);
+
+Example skills:
+
+Python
+Java
+HTML
+CSS
+JavaScript
+SQL
+Machine Learning
+UI/UX
+Networking
+Communication
+6. User Skills Table
+
+This connects students with their skills.
+
+CREATE TABLE user_skills (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    skill_id INT NOT NULL,
+    skill_level ENUM('beginner', 'intermediate', 'advanced') DEFAULT 'beginner',
+
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (skill_id) REFERENCES skills(id),
+
+    UNIQUE(user_id, skill_id)
+);
+7. Interests Table
+CREATE TABLE interests (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    interest_name VARCHAR(100) NOT NULL UNIQUE
+);
+
+Example:
+
+Web Development
+AI/ML
+Cyber Security
+Data Science
+Mobile App Development
+Cloud Computing
+Game Development
+8. User Interests Table
+CREATE TABLE user_interests (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    interest_id INT NOT NULL,
+
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (interest_id) REFERENCES interests(id),
+
+    UNIQUE(user_id, interest_id)
+);
+Career Recommendation Tables
+9. Careers Table
+CREATE TABLE careers (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    career_name VARCHAR(150) NOT NULL,
+    description TEXT,
+    future_scope TEXT,
+    difficulty_level ENUM('easy', 'medium', 'hard') DEFAULT 'medium',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+Example careers:
+
+Frontend Developer
+Backend Developer
+Full Stack Developer
+Data Analyst
+AI/ML Engineer
+Cyber Security Analyst
+Mobile App Developer
+Cloud Engineer
+Database Administrator
+10. Career Skills Table
+
+This stores required skills for each career.
+
+CREATE TABLE career_skills (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    career_id INT NOT NULL,
+    skill_id INT NOT NULL,
+    required_level ENUM('beginner', 'intermediate', 'advanced') DEFAULT 'beginner',
+    weight INT DEFAULT 10,
+
+    FOREIGN KEY (career_id) REFERENCES careers(id),
+    FOREIGN KEY (skill_id) REFERENCES skills(id),
+
+    UNIQUE(career_id, skill_id)
+);
+
+Example:
+
+Frontend Developer:
+HTML, CSS, JavaScript, React, Git
+
+Backend Developer:
+Python, SQL, API, Database, Authentication
+11. Career Interests Table
+
+This connects careers with interests.
+
+CREATE TABLE career_interests (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    career_id INT NOT NULL,
+    interest_id INT NOT NULL,
+    weight INT DEFAULT 10,
+
+    FOREIGN KEY (career_id) REFERENCES careers(id),
+    FOREIGN KEY (interest_id) REFERENCES interests(id),
+
+    UNIQUE(career_id, interest_id)
+);
+12. Career Recommendations Table
+
+This stores AI-generated career recommendations.
+
+CREATE TABLE career_recommendations (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    career_id INT NOT NULL,
+    match_score DECIMAL(5,2),
+    reason TEXT,
+    missing_skills TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (career_id) REFERENCES careers(id)
+);
+
+Example:
+
+User: Ram
+Recommended Career: Backend Developer
+Match Score: 78.50
+Missing Skills: API Development, Authentication, Deployment
+Subject Guidance Tables
+13. Subject Skills Table
+
+This connects syllabus subjects with skills.
+
+CREATE TABLE subject_skills (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    subject_id INT NOT NULL,
+    skill_id INT NOT NULL,
+
+    FOREIGN KEY (subject_id) REFERENCES subjects(id),
+    FOREIGN KEY (skill_id) REFERENCES skills(id),
+
+    UNIQUE(subject_id, skill_id)
+);
+
+Example:
+
+DBMS → SQL, Database Design
+Web Technology → HTML, CSS, JavaScript
+OOP in Java → Java, OOP
+14. Subject Careers Table
+
+This connects subjects with careers.
+
+CREATE TABLE subject_careers (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    subject_id INT NOT NULL,
+    career_id INT NOT NULL,
+    relevance_note TEXT,
+
+    FOREIGN KEY (subject_id) REFERENCES subjects(id),
+    FOREIGN KEY (career_id) REFERENCES careers(id),
+
+    UNIQUE(subject_id, career_id)
+);
+
+Example:
+
+DBMS → Backend Developer, Database Administrator, Data Analyst
+Computer Networking → Network Engineer, Cyber Security Analyst
+Roadmap Tables
+15. Roadmaps Table
+CREATE TABLE roadmaps (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    career_id INT NOT NULL,
+    roadmap_title VARCHAR(150) NOT NULL,
+    description TEXT,
+
+    FOREIGN KEY (career_id) REFERENCES careers(id)
+);
+16. Roadmap Steps Table
+CREATE TABLE roadmap_steps (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    roadmap_id INT NOT NULL,
+    step_number INT NOT NULL,
+    step_title VARCHAR(150) NOT NULL,
+    step_description TEXT,
+    resource_link VARCHAR(255),
+    estimated_days INT,
+
+    FOREIGN KEY (roadmap_id) REFERENCES roadmaps(id)
+);
+
+Example:
+
+Backend Developer Roadmap:
+1. Learn Python basics
+2. Learn SQL
+3. Learn DBMS
+4. Learn authentication
+5. Build REST API
+6. Deploy project
+17. User Roadmap Progress Table
+CREATE TABLE user_roadmap_progress (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    roadmap_step_id INT NOT NULL,
+    status ENUM('not_started', 'in_progress', 'completed') DEFAULT 'not_started',
+    completed_at TIMESTAMP NULL,
+
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (roadmap_step_id) REFERENCES roadmap_steps(id),
+
+    UNIQUE(user_id, roadmap_step_id)
+);
+18. Roadmap History Table
+
+Useful for your Roadmap Change Feature.
+
+CREATE TABLE roadmap_history (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    old_career_id INT,
+    new_career_id INT,
+    changed_reason TEXT,
+    changed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (old_career_id) REFERENCES careers(id),
+    FOREIGN KEY (new_career_id) REFERENCES careers(id)
+);
+Hackathon Team Finder Tables
+19. Hackathon Posts Table
+
+This improves your hackathon_register table.
+
+CREATE TABLE hackathon_posts (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    title VARCHAR(150) NOT NULL,
+    description TEXT,
+    required_role VARCHAR(100),
+    availability VARCHAR(100),
+    status ENUM('open', 'closed') DEFAULT 'open',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+20. Hackathon Post Skills Table
+CREATE TABLE hackathon_post_skills (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    post_id INT NOT NULL,
+    skill_id INT NOT NULL,
+
+    FOREIGN KEY (post_id) REFERENCES hackathon_posts(id),
+    FOREIGN KEY (skill_id) REFERENCES skills(id),
+
+    UNIQUE(post_id, skill_id)
+);
+21. Team Requests Table
+
+This table supports request, accept, and reject features.
+
+CREATE TABLE team_requests (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    sender_id INT NOT NULL,
+    receiver_id INT NOT NULL,
+    hackathon_post_id INT NOT NULL,
+    message TEXT,
+    status ENUM('pending', 'accepted', 'rejected') DEFAULT 'pending',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (sender_id) REFERENCES users(id),
+    FOREIGN KEY (receiver_id) REFERENCES users(id),
+    FOREIGN KEY (hackathon_post_id) REFERENCES hackathon_posts(id)
+);
+Optional But Good for MVP
+22. Notifications Table
+CREATE TABLE notifications (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    title VARCHAR(150),
+    message TEXT,
+    is_read BOOLEAN DEFAULT FALSE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);

@@ -1,0 +1,98 @@
+BCA Course Structure
+
+Legend: Cr = Credit, L = Lecture, T = Tutorial, P = Practical
+
+Year 1 / Semester I
+SN	Course Code	Course Name	Cr	L	T	P
+1	BCA 101	Computer Fundamentals and Applications	3	3	-	3
+2	BCA 102	Programming in C	3	3	-	3
+3	BCA 103	Digital Logic	3	3	-	3
+4	BCA 104	Mathematics-I	3	3	1	1
+5	BCA 105	Professional Communication and Ethics	3	3	2	-
+6	BCA 106	Hardware Workshop	1	-	-	2
+	Total		16	15	3	12
+Year 1 / Semester II
+SN	Course Code	Course Name	Cr	L	T	P
+1	BCA 151	Discrete Structure	3	3	-	3
+2	BCA 152	Microprocessor and Computer Architecture	3	3	-	3
+3	BCA 153	OOP in Java	3	3	-	3
+4	BCA 154	Mathematics-II	3	3	1	1
+5	BCA 155	UX/UI Design	3	3	-	3
+6	BCA 156	Principles of Management	1	1	-	-
+	Total		16	16	1	13
+Year 2 / Semester III
+SN	Course Code	Course Name	Cr	L	T	P
+1	BCA 201	Data Structure and Algorithms	3	3	-	3
+2	BCA 202	Database Management System	3	3	-	3
+3	BCA 203	Web Technology-I	3	3	-	3
+4	BCA 204	System Analysis and Design	3	3	-	3
+5	BCA 205	Probability and Statistics	3	3	-	3
+6	BCA 206	Applied Economics	2	2	-	-
+	Total		17	17	-	15
+Year 2 / Semester IV
+SN	Course Code	Course Name	Cr	L	T	P
+1	BCA 251	Operating Systems	3	3	-	3
+2	BCA 252	Software Engineering	3	3	-	3
+3	BCA 253	Numerical Methods	3	3	-	3
+4	BCA 254	Python Programming	3	3	-	3
+5	BCA 255	Web Technology-II	3	3	-	3
+6	BCA 256	Project-I	2	-	-	4
+	Total		17	15	-	19
+Year 3 / Semester V
+SN	Course Code	Course Name	Cr	L	T	P
+1	BCA 301	Computer Network	3	3	-	3
+2	BCA 302	Artificial Intelligence	3	3	-	3
+3	BCA 303	Advance Java Programming	3	3	-	3
+4	BCA 304	MIS and e-Business	3	3	-	3
+5	BCA 305	Society and Technology	3	3	2	-
+6	BCA 306	Project-II	3	-	-	6
+	Total		18	15	2	18
+Year 3 / Semester VI
+SN	Course Code	Course Name	Cr	L	T	P
+1	BCA 351	Computer Graphics and Animation	3	3	-	3
+2	BCA 352	Mobile Programming	3	3	-	3
+3	BCA 353	Cryptography and Network Security	3	3	-	3
+4	BCA 354	Technical Writing	2	2	2	-
+5	BCA 355	Distributed System	3	3	-	3
+6	BCA 356	Project-III	3	-	-	6
+	Total		17	15	2	18
+Year 4 / Semester VII
+SN	Course Code	Course Name	Cr	L	T	P
+1	BCA 401	Cyber Security and Ethical Hacking	3	3	-	3
+2	BCA 402	Software Project Management	3	3	-	3
+3	BCA 403	Financial Accounting	2	2	-	-
+4	BCA 404	Project-IV	3	-	-	6
+5	BCA 405	Elective-I	3	3	-	3
+6	BCA 406	Elective-II	3	3	-	3
+	Total		18	15	-	18
+Elective I
+SN	Course Code	Course Name	Cr	L	T	P
+1	BCA 404-I	Machine Learning	3	3	-	3
+2	BCA 404-II	E-Commerce	3	3	-	3
+3	BCA 404-III	Database Administration	3	3	-	3
+4	BCA 404-IV	Linux	3	3	-	3
+Elective II
+SN	Course Code	Course Name	Cr	L	T	P
+1	BCA 405-I	Dotnet Technology	3	3	-	3
+2	BCA 405-II	Business Intelligence	3	3	-	3
+3	BCA 405-III	Software Testing and Quality Assurance	3	3	-	3
+4	BCA 405-IV	Data Visualization	3	3	-	3
+Year 4 / Semester VIII
+SN	Course Code	Course Name	Cr	L	T	P
+1	BCA 451	Cloud Computing	3	3	-	3
+2	BCA 452	Internship	3	-	-	-
+3	BCA 453	Elective-III	3	3	-	3
+4	BCA 454	Elective-IV	3	3	-	3
+	Total		12	9	-	9
+Elective III
+SN	Course Code	Course Name	Cr	L	T	P
+1	BCA 453-I	Network Administration	3	3	-	3
+2	BCA 453-II	E-governance	3	3	-	3
+3	BCA 453-III	Database Programming	3	3	-	3
+4	BCA 453-IV	Geographical Information System	3	3	-	3
+Elective IV
+SN	Course Code	Course Name	Cr	L	T	P
+1	BCA 454-I	Digital Marketing and SEO	3	3	-	3
+2	BCA 454-II	Image Processing	3	3	-	3
+3	BCA 454-III	Internet of Things	3	3	-	3
+4	BCA 454-IV	Data Mining and Data Warehouse	3	3	-	3

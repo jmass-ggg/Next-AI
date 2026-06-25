@@ -1,0 +1,168 @@
+# Syllabus Structure
+
+## First Year
+
+### First Semester
+
+|        SN | Course Code | Course Title                         | Credit Hrs. | Lecture Hrs. | Tutorial Hrs. | Lab Hrs. |
+| --------: | ----------- | ------------------------------------ | ----------: | -----------: | ------------: | -------: |
+|         1 | CACS101     | Computer Fundamentals & Applications |           4 |            4 |             - |        4 |
+|         2 | CASO102     | Society & Technology                 |           3 |            3 |             - |        - |
+|         3 | CAEN103     | English I                            |           3 |            3 |             1 |        - |
+|         4 | CAMT104     | Mathematics I                        |           3 |            3 |             1 |        1 |
+|         5 | CACS105     | Digital Logic                        |           3 |            3 |             - |        2 |
+| **Total** |             |                                      |      **16** |       **16** |         **2** |    **7** |
+
+---
+
+### Second Semester
+
+|        SN | Course Code | Course Title                             | Credit Hrs. | Lecture Hrs. | Tutorial Hrs. | Lab Hrs. |
+| --------: | ----------- | ---------------------------------------- | ----------: | -----------: | ------------: | -------: |
+|         1 | CACS151     | C Programming                            |           4 |            4 |             1 |        3 |
+|         2 | CAAC152     | Financial Accounting                     |           3 |            3 |             1 |        1 |
+|         3 | CAEN153     | English II                               |           3 |            3 |             1 |        - |
+|         4 | CAMT154     | Mathematics II                           |           3 |            3 |             1 |        1 |
+|         5 | CACS155     | Microprocessor and Computer Architecture |           3 |            3 |             1 |        2 |
+| **Total** |             |                                          |      **16** |       **16** |         **5** |    **7** |
+
+---
+
+## Second Year
+
+### Third Semester
+
+|        SN | Course Code | Course Title                 | Credit Hrs. | Lecture Hrs. | Tutorial Hrs. | Lab Hrs. |
+| --------: | ----------- | ---------------------------- | ----------: | -----------: | ------------: | -------: |
+|         1 | CACS201     | Data Structures & Algorithms |           3 |            3 |             - |        3 |
+|         2 | CAST202     | Probability and Statistics   |           3 |            3 |             1 |        1 |
+|         3 | CACS203     | System Analysis and Design   |           3 |            3 |             1 |        - |
+|         4 | CACS204     | OOP in Java                  |           3 |            3 |             1 |        2 |
+|         5 | CACS205     | Web Technology               |           3 |            3 |             - |        3 |
+| **Total** |             |                              |      **15** |       **15** |         **3** |    **9** |
+
+---
+
+### Fourth Semester
+
+|        SN | Course Code | Course Title               | Credit Hrs. | Lecture Hrs. | Tutorial Hrs. | Lab Hrs. |
+| --------: | ----------- | -------------------------- | ----------: | -----------: | ------------: | -------: |
+|         1 | CACS251     | Operating System           |           3 |            3 |             1 |        2 |
+|         2 | CACS252     | Numerical Methods          |           3 |            3 |             1 |        2 |
+|         3 | CACS253     | Software Engineering       |           3 |            3 |             1 |        - |
+|         4 | CACS254     | Scripting Language         |           3 |            3 |             - |        3 |
+|         5 | CACS255     | Database Management System |           3 |            3 |             1 |        2 |
+|         6 | CAPJ256     | Project I                  |           2 |            - |             - |        4 |
+| **Total** |             |                            |      **17** |       **15** |         **4** |   **13** |
+
+---
+
+## Third Year
+
+### Fifth Semester
+
+|        SN | Course Code | Course Title                    | Credit Hrs. | Lecture Hrs. | Tutorial Hrs. | Lab Hrs. |
+| --------: | ----------- | ------------------------------- | ----------: | -----------: | ------------: | -------: |
+|         1 | CACS301     | MIS and e-Business              |           3 |            3 |             - |        2 |
+|         2 | CACS302     | DotNet Technology               |           3 |            3 |             - |        3 |
+|         3 | CACS303     | Computer Networking             |           3 |            3 |             - |        2 |
+|         4 | CAMG304     | Introduction to Management      |           3 |            3 |             1 |        - |
+|         5 | CACS305     | Computer Graphics and Animation |           3 |            3 |             1 |        2 |
+| **Total** |             |                                 |      **15** |       **15** |         **2** |    **9** |
+
+---
+
+### Sixth Semester
+
+|        SN | Course Code | Course Title              | Credit Hrs. | Lecture Hrs. | Tutorial Hrs. | Lab Hrs. |
+| --------: | ----------- | ------------------------- | ----------: | -----------: | ------------: | -------: |
+|         1 | CACS351     | Mobile Programming        |           3 |            3 |             - |        3 |
+|         2 | CACS352     | Distributed System        |           3 |            3 |             1 |        - |
+|         3 | CAEC353     | Applied Economics         |           3 |            3 |             1 |        - |
+|         4 | CACS354     | Advanced Java Programming |           3 |            3 |             - |        3 |
+|         5 | CACS355     | Network Programming       |           3 |            3 |             - |        2 |
+|         6 | CAPJ356     | Project II                |           2 |            - |             - |        4 |
+| **Total** |             |                           |      **17** |       **15** |         **2** |   **12** |
+
+---
+
+## Fourth Year
+
+### Seventh Semester
+
+|        SN | Course Code | Course Title                    | Credit Hrs. | Lecture Hrs. | Tutorial Hrs. | Lab Hrs. |
+| --------: | ----------- | ------------------------------- | ----------: | -----------: | ------------: | -------: |
+|         1 | CACS401     | Cyber Law & Professional Ethics |           3 |            3 |             1 |        - |
+|         2 | CACS402     | Cloud Computing                 |           3 |            3 |             - |        3 |
+|         3 | CAIN403     | Internships                     |           3 |            - |             - |        - |
+|         4 |             | Elective I                      |           3 |            3 |             - |        - |
+|         5 |             | Elective II                     |           3 |            3 |             - |        - |
+| **Total** |             |                                 |      **15** |       **12** |               |          |
+
+---
+
+### Eighth Semester
+
+|        SN | Course Code | Course Title        | Credit Hrs. | Lecture Hrs. | Tutorial Hrs. | Lab Hrs. |
+| --------: | ----------- | ------------------- | ----------: | -----------: | ------------: | -------: |
+|         1 | CAOR451     | Operations Research |           3 |            3 |             1 |        - |
+|         2 | CAPJ452     | Project III         |           6 |            - |             - |       12 |
+|         3 |             | Elective III        |           3 |            3 |             - |        - |
+|         4 |             | Elective IV         |           3 |            3 |             - |        - |
+| **Total** |             |                     |      **15** |        **9** |               |          |
+
+---
+
+## List of Electives
+
+| SN | Course Code | Course Title                    |
+| -: | ----------- | ------------------------------- |
+|  1 | CAPS476     | Applied Psychology              |
+|  2 | CACS477     | Geographical Information System |
+|  3 | CACS478     | IT in Banking                   |
+|  4 | CACS479     | Hotel Information System        |
+|  5 | CAER480     | Enterprise Resource Planning    |
+|  6 | CACS482     | Knowledge Engineering           |
+|  7 | CACS483     | Advanced DotNet Technology      |
+|  8 | CACS484     | Database Programming            |
+|  9 | CACS485     | Database Administration         |
+| 10 | CACS486     | Network Administration          |
+
+---
+
+## Summary
+
+| Year            | Semester         | Credit Hours |
+| --------------- | ---------------- | -----------: |
+| First Year      | First Semester   |           16 |
+| First Year      | Second Semester  |           16 |
+| Second Year     | Third Semester   |           15 |
+| Second Year     | Fourth Semester  |           17 |
+| Third Year      | Fifth Semester   |           15 |
+| Third Year      | Sixth Semester   |           17 |
+| Fourth Year     | Seventh Semester |           15 |
+| Fourth Year     | Eighth Semester  |           15 |
+| **Grand Total** |                  |      **126** |
+
+---
+
+## Course Detail Format
+
+### Course Title: Computer Fundamentals and Applications
+
+**Course Code:** CACS101
+**Credit:** 4 Cr.
+**Year/Semester:** I/I
+**Class Load:** 8 Hrs./Week
+**Theory:** 4 Hrs.
+**Practical:** 4 Hrs.
+
+### Course Description
+
+This course offers fundamental concepts of computer and computing, which includes introduction to computer system, computer software and database management system, operating system, data communication and computer network, and contemporary technologies.
+
+It also aims at helping students convert theoretical concepts into practical skills through the use of different application packages including word processor, spreadsheet package, presentation package, and photo editing graphical package.
+
+### Course Objectives
+
+The general objectives of this course are to provide fundamental concepts of information and communication technology and to make students capable of using different application packages in their personal as well as professional life.

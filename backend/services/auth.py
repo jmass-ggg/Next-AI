@@ -1,9 +1,13 @@
 import hashlib
 from database import Database
-from authentication import create_access_token,create_refresh_token
+from authentication import create_access_token,create_refresh_token,verify_access_token,verify_refresh_token
+from api.auth import AuthApi
+
 class AuthServices:
     def __init__(self):
         self.db=Database()
+        self.auth=AuthApi()
+        
         
     def hash_password(self,password):
         return hashlib.sha256(password.encode()).hexdigest()
@@ -42,10 +46,11 @@ class AuthServices:
         )
         
         user=cursor.fetchone()
-        print(user)
+  
         if user:
             access=create_access_token(email)
             refresh=create_refresh_token(email)
+            
             
             return {
                 "login":'successfully',
@@ -55,4 +60,24 @@ class AuthServices:
         cursor.close()
         return {
             "error":"Invalid Credentials"  
+        }
+    def profile(self,email):
+        conn=self.db.connect()
+        cursor=conn.cursor()
+        cursor.execute(
+            """
+            SELECT id,username,email
+            FROM users
+            WHERE email = %s
+            """,(email)
+            
+            
+        )
+        user=cursor.fetchone()
+        if not user:
+            return "User not found"
+        return{
+            "id":user[0],
+            "username":user[1],
+            "email":user[2]
         }

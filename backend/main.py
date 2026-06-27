@@ -7,7 +7,12 @@ auth=AuthServices()
 class MainHandler(BaseHTTPRequestHandler):
     def parse(self):
         return self.path.strip("/").split("/")
-    
+    def do_GET(self):
+        path=self.parse()
+        if path[0] == "auth":
+            if path[1] == "me":
+                AuthApi(self,auth).profile()
+        
     def do_POST(self):
         path=self.parse()
         if path[0] == "auth":
@@ -15,6 +20,10 @@ class MainHandler(BaseHTTPRequestHandler):
                 AuthApi(self,auth).register()
             elif path[1] == "login":
                 AuthApi(self,auth).login()
+            elif path[1] == "me":
+                AuthApi(self,auth).profile()
+                
+                
                 
 def run():
     server=HTTPServer(("localhost",8000),MainHandler)

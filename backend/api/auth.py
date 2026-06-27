@@ -13,9 +13,14 @@ class AuthApi:
     def response(self,data):
         self.req.send_response(200)
         self.req.send_header("Content-Type", "application/json")
-        self.req.end_header()
-        self.req.wfile.write(json.dump(data).encode())
+        self.req.end_headers()
+        self.req.wfile.write(json.dumps(data).encode())
         
     def register(self):
-        data=self.read
+        data=self.read()
         self.response(self.service.create(data["username"],data["email"],data["password"]))
+    
+    def login(self):
+        data=self.read()
+        self.response(self.service.login(data["email"],data["password"]))
+        

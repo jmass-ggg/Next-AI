@@ -1,0 +1,6 @@
+psycopg2-binary
+cffi
+cryptography
+jwt
+pycparser
+python-dotenv

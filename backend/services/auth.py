@@ -6,7 +6,6 @@ from api.auth import AuthApi
 class AuthServices:
     def __init__(self):
         self.db=Database()
-        self.auth=AuthApi()
         
         
     def hash_password(self,password):
@@ -54,14 +53,16 @@ class AuthServices:
             
             return {
                 "login":'successfully',
-                "access_token":access
+                "access_token":access,
+                 "refresh_token":refresh
             }
         conn.close()
         cursor.close()
         return {
             "error":"Invalid Credentials"  
         }
-    def profile(self,email):
+    def profiles(self,email):
+        print("EMAIL RECEIVED BY SERVICE:", email)
         conn=self.db.connect()
         cursor=conn.cursor()
         cursor.execute(
@@ -69,7 +70,8 @@ class AuthServices:
             SELECT id,username,email
             FROM users
             WHERE email = %s
-            """,(email)
+            """,
+            (email,)
             
             
         )

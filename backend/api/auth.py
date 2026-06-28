@@ -25,18 +25,21 @@ class AuthApi:
         self.req.send_response(200)
         if "access_token" in data:
             self.req.send_header(
-                "Set-Cookie",
-                f"access_token={data['access_token']}; HttpOnly; Path=/; Max-Age=900"
+            "Set-Cookie",
+            f"access_token={data['access_token']}; HttpOnly; Path=/; Max-Age=900"
             )
-
+            del data["access_token"]
+        if "refresh_token" in data:
             self.req.send_header(
-                "Set-Cookie",
-                f"refresh_token={data['refresh_token']}; HttpOnly; Path=/; Max-Age=604800"
+            "Set-Cookie",
+            f"refresh_token={data['refresh_token']}; HttpOnly; Path=/; Max-Age=604800" 
             )
+            del data["refresh_token"]
+        
+            
 
            
-            del data["access_token"]
-            del data["refresh_token"]
+            
         self.req.send_header("Content-Type", "application/json")
         self.req.end_headers()
         self.req.wfile.write(json.dumps(data).encode())
@@ -50,16 +53,26 @@ class AuthApi:
         self.response(self.service.login(data["email"],data["password"]))
         
     def profile(self):
-        token=self.auth.get_cookie("access_token")
+        token = self.get_cookie("access_token")
+        print("TOKEN FROM COOKIE:", token)
+
         if not token:
             self.response({"error": "Login required"})
             return
-        email=verify_access_token(token)
-        data=self.service.profile(email)
-        return data
+
+        email = verify_access_token(token)
+        print("EMAIL FROM TOKEN:", email)
+
+        if not email:
+            self.response({"error": "Invalid or expired token"})
+            return
+
+        data = self.service.profiles(email)
+        self.response(data)
+    
     def refresh_token(self):
         refresh_token=self.get_cookie("refresh_token")
-        if not self.refresh_token:
+        if not refresh_token:
             self.response({"error": "No refresh token"})
             return
         email=verify_refresh_token(email)
@@ -67,5 +80,6 @@ class AuthApi:
         return {
             "successfully":True,
             "access_token":access_token
+           
         }
-        
+    

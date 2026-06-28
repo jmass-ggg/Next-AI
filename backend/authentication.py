@@ -24,33 +24,37 @@ def create_refresh_token(email):
     return jwt.encode(payload,SECRET_KEY,algorithm=ALGORITHM)
 
 def verify_access_token(token):
-    payload=jwt.decode(
-        token,
-        SECRET_KEY,
-        algorithm=ALGORITHM
-    )
-    
-    if payload.get("access") != "access":
-        return "Invalid access token type"
-    email=payload.get("sub")
-    if not email:
-        return "Invalid token payload"
-    return email
+    try:
+        payload = jwt.decode(
+            token,
+            SECRET_KEY,
+            algorithms=[ALGORITHM]
+        )
+
+        if payload.get("token_type") != "access":
+            return None
+
+        return payload.get("sub")
+
+    except Exception:
+        return None
      
             
 def verify_refresh_token(token):
-    payload=jwt.decode(
-        token,
-        SECRET_KEY,
-        algorithm=ALGORITHM
-    )
-    if payload.get("access") != "refresh":
-        return "Invalid access token type"
-    email=payload.get("sub")
-    if not email:
-        return "Invalid token payload"
-    return email
+    try:
+        payload = jwt.decode(
+            token,
+            SECRET_KEY,
+            algorithms=[ALGORITHM]
+        )
 
+        if payload.get("token_type") != "refresh":
+            return None
+
+        return payload.get("sub")
+
+    except Exception:
+        return None
 
 
 

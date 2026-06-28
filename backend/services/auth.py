@@ -61,25 +61,46 @@ class AuthServices:
         return {
             "error":"Invalid Credentials"  
         }
-    def profiles(self,email):
-        print("EMAIL RECEIVED BY SERVICE:", email)
+    def profile(self,email):
         conn=self.db.connect()
         cursor=conn.cursor()
         cursor.execute(
             """
-            SELECT id,username,email
+            SELECT id , username ,email
             FROM users
             WHERE email = %s
-            """,
-            (email,)
-            
-            
+            """,(email,)
         )
         user=cursor.fetchone()
         if not user:
             return "User not found"
-        return{
+        return {
             "id":user[0],
-            "username":user[1],
+            "username": user[1],
             "email":user[2]
         }
+    def createNewAccessToken(self,email):
+        conn=self.db.connect()
+        cursor=conn.cursor()
+        cursor.execute(
+            """
+            SELECT email
+            FROM users
+            WHERE email = %s
+            """,(email,)
+        )
+        user = cursor.fetchone()
+
+        cursor.close()
+        conn.close()
+
+        if not user:
+            return {"error": "User not found"}
+        newAccessToken=create_access_token(user[0])
+        return {
+        "success": True,
+        "message": "New access token created",
+        "access_token": newAccessToken
+         }
+        
+        

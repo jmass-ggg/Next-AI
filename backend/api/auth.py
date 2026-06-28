@@ -28,18 +28,13 @@ class AuthApi:
             "Set-Cookie",
             f"access_token={data['access_token']}; HttpOnly; Path=/; Max-Age=900"
             )
-            del data["access_token"]
+            
         if "refresh_token" in data:
             self.req.send_header(
             "Set-Cookie",
             f"refresh_token={data['refresh_token']}; HttpOnly; Path=/; Max-Age=604800" 
             )
-            del data["refresh_token"]
-        
-            
-
-           
-            
+            del data["refresh_token"]   
         self.req.send_header("Content-Type", "application/json")
         self.req.end_headers()
         self.req.wfile.write(json.dumps(data).encode())
@@ -52,34 +47,20 @@ class AuthApi:
         data=self.read()
         self.response(self.service.login(data["email"],data["password"]))
         
-    def profile(self):
-        token = self.get_cookie("access_token")
-        print("TOKEN FROM COOKIE:", token)
-
-        if not token:
-            self.response({"error": "Login required"})
-            return
-
-        email = verify_access_token(token)
-        print("EMAIL FROM TOKEN:", email)
-
+    def profiles(self):
+        access_token=self.get_cookie("access_token")
+        email=verify_access_token(access_token)
         if not email:
-            self.response({"error": "Invalid or expired token"})
+            self.response({"error":"User not found"})
             return
-
-        data = self.service.profiles(email)
-        self.response(data)
+        self.response(self.service.profile(email))
     
-    def refresh_token(self):
+    def new_Access_Token(self):
         refresh_token=self.get_cookie("refresh_token")
-        if not refresh_token:
-            self.response({"error": "No refresh token"})
+        email=verify_refresh_token(refresh_token)
+        if not email:
+            self.response({"error":"User not found"})
             return
-        email=verify_refresh_token(email)
-        access_token=create_access_token(email)
-        return {
-            "successfully":True,
-            "access_token":access_token
-           
-        }
+        self.response(self.service.createNewAccessToken(email))
+        
     

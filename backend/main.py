@@ -11,9 +11,9 @@ class MainHandler(BaseHTTPRequestHandler):
         path=self.parse()
         if path[0] == "auth":
             if path[1] == "me":
-                AuthApi(self,auth).profile()
+                AuthApi(self,auth).profiles()
             elif path[1] == "refresh":
-                AuthApi(self,auth).refresh_token()
+                AuthApi(self,auth).new_Access_Token()
         
     def do_POST(self):
         path=self.parse()

@@ -79,6 +79,22 @@ class AuthServices:
             "username": user[1],
             "email":user[2]
         }
+        
+    def get_user_id(self,email):
+        conn=self.db.connect()
+        cursor=conn.cursor()
+        cursor.execute(
+            """
+            SELECT id 
+            FROM users
+            WHERE email = %s
+            """,(email,)
+        )
+        user=cursor.fetchone()
+        if not user:
+            return None
+        return user[0]
+    
     def createNewAccessToken(self,email):
         conn=self.db.connect()
         cursor=conn.cursor()
@@ -103,4 +119,19 @@ class AuthServices:
         "access_token": newAccessToken
          }
         
-        
+    def user_profile(self,user_id,full_name,age,phone_number,bio,github_url,linkedin_url):
+        conn=self.db.connect()
+        cursor=conn.cursor()
+        cursor.execute(
+            """
+            INSERT INTO student_profiles(user_id,full_name,age,phone_number,bio,github_url,linkedin_url)
+            VALUES (%s,%s,%s,%s,%s,%s,%s)
+            """,(user_id,full_name,age,phone_number,bio,github_url,linkedin_url)
+            
+        )
+        cursor.close()
+        conn.close()
+        return {
+        "success": True,
+        "message": "Student profile created"
+        }

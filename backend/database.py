@@ -32,6 +32,22 @@ class Database:
             """
             
         )
+        cursor.execute(
+            """
+            CREATE TABLE IF NOT EXISTS student_profiles (
+            id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+            user_id UUID NOT NULL ,
+            full_name VARCHAR(150),
+            age INT,
+            phone_number VARCHAR(20),
+            bio TEXT,
+            github_url VARCHAR(255),
+            linkedin_url VARCHAR(255),
+            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+            FOREIGN KEY (user_id) REFERENCES users(id),
+        )
+            """ 
+        )
         conn.commit()
         conn.close()
         

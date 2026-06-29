@@ -135,3 +135,59 @@ class AuthServices:
         "success": True,
         "message": "Student profile created"
         }
+    def get_user_profiles(self,user_profile_id):
+        conn=self.db.connect()
+        cursor=conn.cursor()
+        cursor.execute(
+            """
+            SELECT * FROM 
+            student_profiles
+            WHERE id= %s
+            """,(user_profile_id,)
+            
+        )
+        user=cursor.fetchone()
+        if not user:
+            return {"error ":"User not found"}
+        conn.close()
+        cursor.close()
+        return {
+            "id":user[0],
+            "user_id":user[1],
+            "full_name":user[2],
+            "age":user[3],
+            "phone_number":user[4],
+            "bio":user[5],
+            "github_url":user[6],
+            "linkedin_url":user[7]
+        }
+    def patch_user_profiles(self,user_profile_id,**kwargs):
+        conn=self.db.connect()
+        cursor=conn.cursor()
+        fields=[]
+        value=[]
+        allow_fields=[
+            "full_name","age","phone_number","bio","github_url","linkedin_url"
+        ]
+        for key in allow_fields:
+            if key and kwargs[key] is not None:
+                fields.append(f"{key} = %s")
+                value.append(kwargs[key])
+        value.append(user_profile_id)
+        query=cursor.execute(
+            
+            f"""
+            UPDATE student_profiles
+            SET {" ,".join(fields)}
+            WHERE id =%s
+            RETURN id
+            """
+            
+        )
+        cursor.execute(query,value)
+        student_profiles_id=cursor.fetchone()[0]
+        cursor.close()
+        conn.close()
+        return {
+            "student_profile":student_profiles_id
+        }

@@ -116,3 +116,7 @@ class AuthApi:
         self.response(result)
         
     
+    def get_user_profile(self,user_profile_id):
+        self.response(self.service.get_user_profiles(user_profile_id))
+        
+        

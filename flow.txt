@@ -1,0 +1,23 @@
+Client request
+   ↓
+MainHandler
+   ↓
+Route check: /auth/login, /auth/register, /auth/me
+   ↓
+AuthApi
+   ↓
+Read JSON body / cookies
+   ↓
+Call AuthServices
+   ↓
+AuthServices talks to database
+   ↓
+Return result to AuthApi
+   ↓
+AuthApi sends JSON response + cookies
+
+
+Handler = routing only
+API/controller = request/response only
+Service = logic only
+Database = SQL only

@@ -1,0 +1,389 @@
+ere is what we have done till now in your raw Python backend authentication system.
+
+1. Built basic backend structure
+
+You separated your backend into layers:
+
+main.py / server.py        -> handles routes
+api/auth.py               -> handles request, response, cookies, auth checks
+services/auth.py          -> handles business logic and database queries
+authentication.py         -> creates and verifies JWT tokens
+database.py               -> connects to PostgreSQL and creates tables
+
+This is a good backend flow.
+
+2. Built register API
+
+You made:
+
+POST /auth/register
+
+It reads:
+
+{
+  "username": "example",
+  "email": "example@gmail.com",
+  "password": "123456"
+}
+
+Then it:
+
+hashes password
+↓
+inserts user into PostgreSQL users table
+↓
+returns username and email
+3. Built login API
+
+You made:
+
+POST /auth/login
+
+It:
+
+checks email and password
+↓
+creates access_token
+↓
+creates refresh_token
+↓
+sets tokens as cookies
+↓
+optionally returns tokens in JSON
+
+We fixed the issue where you created refresh token but did not return it.
+
+4. Built JWT token system
+
+In authentication.py, you made:
+
+create_access_token()
+create_refresh_token()
+verify_access_token()
+verify_refresh_token()
+
+You learned that the token should contain:
+
+{
+    "sub": user_email_or_user_id,
+    "token_type": "access",
+    "exp": expiry_time
+}
+
+And for refresh token:
+
+{
+    "sub": user_email_or_user_id,
+    "token_type": "refresh",
+    "exp": expiry_time
+}
+
+We fixed this mistake:
+
+payload.get("access")
+
+to:
+
+payload.get("token_type")
+5. Fixed cookie-based authentication
+
+You learned that this code:
+
+token = self.get_cookie("access_token")
+
+expects this header:
+
+Cookie: access_token=YOUR_TOKEN
+
+Not this:
+
+Authorization: Bearer YOUR_TOKEN
+
+Then we added support for both cookie and Authorization header.
+
+6. Added Bearer token authentication
+
+We added:
+
+def get_bearer_token(self):
+    auth_header = self.req.headers.get("Authorization")
+
+    if not auth_header:
+        return None
+
+    if not auth_header.startswith("Bearer "):
+        return None
+
+    return auth_header.split(" ", 1)[1]
+
+Now your API can accept:
+
+Authorization: Bearer ACCESS_TOKEN
+
+This is useful for protected APIs.
+
+7. Built reusable auth checker
+
+We created this idea:
+
+def require_auth(self):
+    token = self.get_bearer_token()
+
+    if not token:
+        token = self.get_cookie("access_token")
+
+    if not token:
+        self.response({"error": "Login required"}, status=401)
+        return None
+
+    email = verify_access_token(token)
+
+    if not email:
+        self.response({"error": "Invalid or expired access token"}, status=401)
+        return None
+
+    return email
+
+This makes protected routes easier.
+
+Later we improved the idea to:
+
+def require_user_id(self):
+    ...
+    return user_id
+
+So every protected API can know which user is logged in.
+
+8. Built protected profile API
+
+You made:
+
+GET /auth/me
+
+It:
+
+gets access_token from cookie or Authorization header
+↓
+verifies token
+↓
+gets email/user_id from token
+↓
+fetches logged-in user profile from database
+↓
+returns user info
+
+Example response:
+
+{
+  "id": "user-id",
+  "username": "example",
+  "email": "example@gmail.com"
+}
+9. Debugged many real backend errors
+
+We fixed these important bugs:
+
+Wrong cookie name
+
+You had:
+
+self.get_cookie("access")
+
+but cookie was:
+
+access_token
+
+Fixed to:
+
+self.get_cookie("access_token")
+Wrong SQL tuple
+
+You had:
+
+(email)
+
+Fixed to:
+
+(email,)
+Wrong refresh token variable
+
+You had:
+
+email = verify_refresh_token(email)
+
+Fixed to:
+
+email = verify_refresh_token(refresh_token)
+Returning data but not sending response
+
+You had:
+
+return {"access_token": access_token}
+
+Fixed to:
+
+self.response({"access_token": access_token})
+Missing database commit
+
+For inserts, you need:
+
+conn.commit()
+Returning set instead of dictionary
+
+You had:
+
+return {"successfully"}
+
+That is a set.
+
+Correct:
+
+return {
+    "success": True,
+    "message": "Student profile created"
+}
+10. Fixed JWT alg: none problem
+
+Your token started with:
+
+eyJhbGciOiJub25l...
+
+That meant:
+
+{
+  "alg": "none"
+}
+
+We found that your .env algorithm was probably missing or wrong.
+
+Correct .env should be:
+
+SECRET_KEY=my_secret_key
+ALGORITHM=HS256
+
+Then your token should start like:
+
+eyJhbGciOiJIUzI1Ni...
+
+That means it uses HS256.
+
+11. Built refresh token API
+
+You made:
+
+GET /auth/refresh
+
+It:
+
+reads refresh_token cookie
+↓
+verifies refresh token
+↓
+creates new access token
+↓
+sets new access token cookie
+↓
+returns success response
+
+Example:
+
+{
+  "success": true,
+  "message": "New access token created",
+  "access_token": "eyJhbGciOi..."
+}
+
+We also discussed returning both access and refresh token.
+
+12. Made response return token and set cookie
+
+At first your response() deleted token from JSON:
+
+del data["access_token"]
+
+So Postman showed:
+
+{}
+
+Then we changed it so the token can be both:
+
+stored in cookie
+and
+returned in JSON response
+
+Useful for testing.
+
+13. Started protected student profile API
+
+You started building:
+
+POST /student/profile
+
+The goal:
+
+Only logged-in user can create their student profile
+
+Flow:
+
+read access_token
+↓
+verify user
+↓
+get user_id
+↓
+insert student profile using that user_id
+
+We made it safer by saying:
+
+user_id should come from token/backend
+not from request body
+
+Because users should not be able to send another person’s user_id.
+
+14. Improved token design
+
+We changed the idea from storing email in token:
+
+"sub": email
+
+to storing user id:
+
+"sub": user_id
+
+This makes protected APIs shorter.
+
+Now instead of:
+
+email = verify_access_token(token)
+user_id = self.service.get_user_id(email)
+
+you can directly do:
+
+user_id = verify_access_token(token)
+
+Then use that user_id for profile, projects, posts, courses, etc.
+
+Final backend pattern we reached
+
+For any protected API:
+
+def some_protected_api(self):
+    user_id = self.require_user_id()
+
+    if not user_id:
+        return
+
+    data = self.read()
+
+    self.response(
+        self.service.some_action(user_id, data)
+    )
+
+This is the main engineering idea:
+
+Access token proves who the user is.
+Backend extracts user_id from token.
+Backend uses that user_id for database queries.
+User cannot fake another user's id from request body.
+
+That is real authentication + authorization flow.

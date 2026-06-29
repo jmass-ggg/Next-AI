@@ -1,0 +1,12 @@
+{
+  "email":"asdasdasdasd@gmail.com",
+    "password":"asdasdasd@123"
+}
+
+{
+    "username":"james",
+    "email":"james@gmail.com",
+    "password":"james@123"
+}
+
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJqYW1lc0BnbWFpbC5jb20iLCJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzgyNjMwNTk5fQ.7qDcoifwTIXrpk0tRa0x2itWtEvkX48-X5AA0RNtEyY

@@ -22,8 +22,6 @@ CREATE TABLE student_profiles (
     full_name VARCHAR(150),
     age INT,
     phone_number VARCHAR(20),
-    course_id INT,
-    semester INT,
     bio TEXT,
     github_url VARCHAR(255),
     linkedin_url VARCHAR(255),

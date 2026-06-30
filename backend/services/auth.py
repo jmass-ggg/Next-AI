@@ -7,29 +7,48 @@ class AuthServices:
     def __init__(self):
         self.db=Database()
         
-        
     def hash_password(self,password):
         return hashlib.sha256(password.encode()).hexdigest()
 
-        
     def create(self,username,email,password):
         conn=self.db.connect()
         cursor=conn.cursor()
         password_hash=self.hash_password(password)
         cursor.execute(
             """
+            SELECT email
+            FROM users
+            WHERE email = %s
+            """,
+            (email,)
+            
+            
+        )
+        user=cursor.fetchone()
+        if user:
+            cursor.close()
+            conn.close()
+            return {
+            "error": "Email already exists",
+            "email": email
+        }
+        cursor.execute(
+            """
             INSERT INTO users(username,email,password)
             VALUES (%s,%s,%s)
-            """,(username,email,password_hash)
+            """,
+            (username,email,password_hash)
             
         )
         
         conn.commit()
+        cursor.close()
         conn.close()
         return {
             "username":username,
             "email":email
         }
+        
     def login(self,email,password):
         conn=self.db.connect()
         cursor=conn.cursor()
@@ -61,6 +80,8 @@ class AuthServices:
         return {
             "error":"Invalid Credentials"  
         }
+        
+        
     def profile(self,email):
         conn=self.db.connect()
         cursor=conn.cursor()
@@ -190,4 +211,18 @@ class AuthServices:
         conn.close()
         return {
             "student_profile":student_profiles_id
+        }
+    def delete_user_profile(self,user_profile_id):
+        conn=self.db.connect()
+        cursor=conn.cursor()
+        cursor.execute(
+            """
+            DELETE FROM student_profiles
+            WHERE id = %s
+            """,(user_profile_id,)
+        )
+        cursor.close()
+        conn.close()
+        return{
+            "Deleted successfully":True
         }

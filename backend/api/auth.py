@@ -91,26 +91,27 @@ class AuthApi:
         self.response(self.service.createNewAccessToken(email))
         
     def user_profiles(self):
-        
-        data=self.read()
-        
-        email=self.require_auth()
-        
-        user_id=self.service.get_user_id(email)
-        
-        if not user_id:
-            self.response({"error":"User not found"})
+        data = self.read()
+
+        email = self.require_auth()
+
+        if not email:
             return
-        
-        
+
+        user_id = self.service.get_user_id(email)
+
+        if not user_id:
+            self.response({"error": "User not found"}, status=404)
+            return
+
         result = self.service.user_profile(
-        user_id=user_id,
-        full_name=data["full_name"],
-        age=data["age"],
-        phone_number=data["phone_number"],
-        bio=data["bio"],
-        github_url=data["github_url"],
-        linkedin_url=data["linkedin_url"]
+            user_id=user_id,
+            full_name=data["full_name"],
+            age=data["age"],
+            phone_number=data["phone_number"],
+            bio=data["bio"],
+            github_url=data["github_url"],
+            linkedin_url=data["linkedin_url"]
         )
 
         self.response(result)
@@ -118,5 +119,10 @@ class AuthApi:
     
     def get_user_profile(self,user_profile_id):
         self.response(self.service.get_user_profiles(user_profile_id))
-        
-        
+    
+    def patch_user_profile(self,user_profile_id):
+        data=self.read()
+        self.response(self.service.patch_user_profiles(user_profile_id,data))
+    
+    def delete_user_profile(self,user_profile_id):
+        self.response(self.service.delete_user_profile(user_profile_id))

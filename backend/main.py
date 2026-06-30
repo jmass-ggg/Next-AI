@@ -14,6 +14,9 @@ class MainHandler(BaseHTTPRequestHandler):
                 AuthApi(self,auth).profiles()
             elif path[1] == "refresh":
                 AuthApi(self,auth).new_Access_Token()
+        elif path[0] == "student":
+            AuthApi(self,auth).get_user_profile()
+            
         
     def do_POST(self):
         path=self.parse()
@@ -24,7 +27,18 @@ class MainHandler(BaseHTTPRequestHandler):
                 AuthApi(self,auth).login()
             elif path[1] == "me":
                 AuthApi(self,auth).profile()
-                
+        elif path[0]=="student":
+            AuthApi(self,auth).user_profiles()
+            
+    def do_PATCH(self):
+        path=self.parse()
+        if path[0] == "students":
+            AuthApi(self,auth).patch_user_profile()
+    
+    def do_DELETE(self):
+        path=self.parse()
+        if path[0] == "student":
+            AuthApi(self,auth).delete_user_profile()
                 
                 
 def run():

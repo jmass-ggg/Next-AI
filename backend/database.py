@@ -43,8 +43,8 @@ class Database:
             bio TEXT,
             github_url VARCHAR(255),
             linkedin_url VARCHAR(255),
-            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-            FOREIGN KEY (user_id) REFERENCES users(id),
+            create_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (user_id) REFERENCES users(id)
         )
             """ 
         )
